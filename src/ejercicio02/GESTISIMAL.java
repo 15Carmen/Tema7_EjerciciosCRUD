@@ -1,5 +1,8 @@
 package ejercicio02;
 
+/**
+ * Clase GESTISIMAL donde guardaremos los datos de los artículos
+ */
 public class GESTISIMAL {
     //Declaramos los atributos
 
@@ -73,21 +76,34 @@ public class GESTISIMAL {
         return precioCompra;
     }
     public void setPrecioCompra(double precioCompra) {
-        this.precioCompra = precioCompra;
+        if (precioCompra <= 0) {
+            System.out.println("El precio de compra no puede ser negativo o 0");
+        } else {
+            this.precioCompra = precioCompra;
+        }
     }
 
     public double getPrecioVenta() {
         return precioVenta;
     }
     public void setPrecioVenta(double precioVenta) {
-        this.precioVenta = precioVenta;
+
+        if (precioVenta <= 0) {
+            System.out.println("El precio de venta no puede ser negativo o 0");
+        } else {
+            this.precioVenta = precioVenta;
+        }
     }
 
     public int getStock() {
         return stock;
     }
     public void setStock(int stock) {
-        this.stock = stock;
+        if (stock < 0) {
+            this.stock = 0;
+        } else {
+            this.stock = stock;
+        }
     }
 
     //Creamos el método toString
@@ -96,7 +112,7 @@ public class GESTISIMAL {
 
         //Creamos una variable para almacenar el texto
         String texto;
-        texto = "Código: " + codigo + " Descripción: " + descripcion + " Precio de compra: " + precioCompra + " Precio de venta: " + precioVenta + " Stock: " + stock;
+        texto = "Código: " + codigo + "|| Descripción: " + descripcion + "|| Precio de compra: " + precioCompra + "€ || Precio de venta: " + precioVenta + "€ || Stock: " + stock + " unidades";
 
         return texto;
     }
