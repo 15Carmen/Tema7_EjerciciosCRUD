@@ -1,6 +1,9 @@
 package ejercicio02;
 
-public class GESTISIMAL {
+/**
+ * Clase Articulo donde guardaremos los datos de los artículos
+ */
+public class Articulo {
     //Declaramos los atributos
 
     /**
@@ -33,7 +36,7 @@ public class GESTISIMAL {
     /**
      * Constructor por defecto
      */
-    public GESTISIMAL() {
+    public Articulo() {
 
     }
 
@@ -45,7 +48,7 @@ public class GESTISIMAL {
      * @param precioVenta
      * @param stock
      */
-    public GESTISIMAL(int codigo, String descripcion, double precioCompra, double precioVenta, int stock) {
+    public Articulo(int codigo, String descripcion, double precioCompra, double precioVenta, int stock) {
         this.codigo = codigo;
         this.descripcion = descripcion;
         this.precioCompra = precioCompra;
@@ -73,21 +76,34 @@ public class GESTISIMAL {
         return precioCompra;
     }
     public void setPrecioCompra(double precioCompra) {
-        this.precioCompra = precioCompra;
+        if (precioCompra <= 0) {
+            System.out.println("El precio de compra no puede ser negativo o 0");
+        } else {
+            this.precioCompra = precioCompra;
+        }
     }
 
     public double getPrecioVenta() {
         return precioVenta;
     }
     public void setPrecioVenta(double precioVenta) {
-        this.precioVenta = precioVenta;
+
+        if (precioVenta <= 0) {
+            System.out.println("El precio de venta no puede ser negativo o 0");
+        } else {
+            this.precioVenta = precioVenta;
+        }
     }
 
     public int getStock() {
         return stock;
     }
     public void setStock(int stock) {
-        this.stock = stock;
+        if (stock < 0) {
+            this.stock = 0;
+        } else {
+            this.stock = stock;
+        }
     }
 
     //Creamos el método toString
@@ -96,7 +112,7 @@ public class GESTISIMAL {
 
         //Creamos una variable para almacenar el texto
         String texto;
-        texto = "Código: " + codigo + " Descripción: " + descripcion + " Precio de compra: " + precioCompra + " Precio de venta: " + precioVenta + " Stock: " + stock;
+        texto = "Código: " + codigo + "|| Descripción: " + descripcion + "|| Precio de compra: " + precioCompra + "€ || Precio de venta: " + precioVenta + "€ || Stock: " + stock + " unidades";
 
         return texto;
     }
