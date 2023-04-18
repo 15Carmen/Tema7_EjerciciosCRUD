@@ -26,6 +26,7 @@ public class Main {
         do {
             Metodos.pintarMenu();
             opcion = sc.nextInt();
+            sc.nextLine();
 
             switch (opcion) {
                 case 1 -> {

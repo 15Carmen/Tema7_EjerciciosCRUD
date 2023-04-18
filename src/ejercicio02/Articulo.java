@@ -1,6 +1,6 @@
 package ejercicio02;
 
-public class GESTISIMAL {
+public class Articulo {
     //Declaramos los atributos
 
     /**
@@ -33,7 +33,7 @@ public class GESTISIMAL {
     /**
      * Constructor por defecto
      */
-    public GESTISIMAL() {
+    public Articulo() {
 
     }
 
@@ -45,7 +45,7 @@ public class GESTISIMAL {
      * @param precioVenta
      * @param stock
      */
-    public GESTISIMAL(int codigo, String descripcion, double precioCompra, double precioVenta, int stock) {
+    public Articulo(int codigo, String descripcion, double precioCompra, double precioVenta, int stock) {
         this.codigo = codigo;
         this.descripcion = descripcion;
         this.precioCompra = precioCompra;

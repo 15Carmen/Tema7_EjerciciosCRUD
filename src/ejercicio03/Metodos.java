@@ -25,7 +25,7 @@ public class Metodos {
      * Método que muestra los pedidos
      * @param pedidos lista de pedidos
      */
-    public static void muestraPedidos(Pizza[] pedidos) {
+    public static void listaPedidos(Pizza[] pedidos) {
 
         for (Pizza pizza : pedidos) {
             if (pizza != null) {
