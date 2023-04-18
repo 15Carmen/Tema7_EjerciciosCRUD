@@ -36,6 +36,8 @@ public class Alumno {
     }
 
     //Creamos los métodos get y set
+
+    //TODO: Hacer comprobaciones en los setter
     public String getNombre() {
         return nombre;
     }
@@ -54,7 +56,7 @@ public class Alumno {
     @Override
     public String toString() {
         String texto;
-        texto = "Nombre: " + nombre + " Nota media: " + notaMedia;
+        texto = "Nombre: " + nombre + "; Nota media: " + notaMedia;
 
         return texto;
     }

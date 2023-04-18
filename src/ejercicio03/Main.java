@@ -27,7 +27,7 @@ public class Main {
             switch (opcion) {
                 case 1 -> {
                     if (contador > 0) {
-                        Metodos.muestraPedidos(pedidos);
+                        Metodos.listaPedidos(pedidos);
                     } else {
                         System.err.println("No hay pedidos en la lista.");
                     }
