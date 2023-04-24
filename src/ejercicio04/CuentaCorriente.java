@@ -16,14 +16,14 @@ public class CuentaCorriente {
     /**
      * Atributo que guarda el dni del titular
      */
-    private final String DNI;
+    private String DNI;
     /**
      * Atributo que guarda el saldo de la cuenta corriente
      */
-    private double saldo;
+    private static double saldo;
 
     /**
-     * Constructor de la clase CuentaCorriente con todos los atributos
+     * Constructor de la clase Alumno con todos los atributos
      *
      * @param nombre
      * @param DNI
@@ -38,7 +38,7 @@ public class CuentaCorriente {
     }
 
     /**
-     * Constructor de la clase CuentaCorriente con el atributo DNI y saldo
+     * Constructor de la clase Alumno con el atributo DNI y saldo
      *
      * @param DNI
      * @param saldo
@@ -48,12 +48,41 @@ public class CuentaCorriente {
         this.saldo = saldo;
     }
 
+    //Declaramos los getters y setters
+    public Sexo getSexo() {
+        return sexo;
+    }
+    public void setSexo(Sexo sexo) {
+        this.sexo = sexo;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getDNI() {
+        return DNI;
+    }
+    public void setDNI(String DNI) {
+        this.DNI = DNI;
+    }
+
+    public double getSaldo() {
+        return saldo;
+    }
+    public void setSaldo(double saldo) {
+        this.saldo = saldo;
+    }
+
     /**
      * Método que saca tanto dinero de la cuenta corriente como se especifique por parámetro
      *
      * @param cantidadSacar
      */
-    public void sacarDinero(double cantidadSacar) {
+    public static void sacarDinero(double cantidadSacar) {
         if (saldo > 0) {
             if (saldo > cantidadSacar) {
                 saldo -= cantidadSacar;
@@ -71,7 +100,7 @@ public class CuentaCorriente {
      *
      * @param cantidadIngresar
      */
-    public void ingresarDinero(double cantidadIngresar) {
+    public static void ingresarDinero(double cantidadIngresar) {
         saldo += cantidadIngresar;
     }
 
@@ -82,12 +111,7 @@ public class CuentaCorriente {
      */
     @Override
     public String toString() {
-        String result = "";
-        result += "DNI: " + DNI + "\n";
-        result += "Nombre: " + nombre + "\n";
-        result += "Saldo: " + saldo + "\n";
-        result += "Sexo: " + sexo;
-        return result;
+        return "DNI: " + DNI + "; Nombre: " + nombre + "; Saldo: " + saldo + "; Sexo: " + sexo;
     }
 }
 

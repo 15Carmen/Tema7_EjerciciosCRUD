@@ -1,7 +1,5 @@
 package ejercicio01;
 
-import ejercicio03.Pizza;
-
 import java.util.Scanner;
 
 public class Metodos {
