@@ -26,8 +26,7 @@ public class Metodos {
     }
 
     /**
-     * Método que comprueba si una posion del array de pedidos está libre
-     *
+     * Método que comprueba si una posición del array de pedidos está libre
      * @param arrayAlumnos lista de alumnos
      * @return devuelve la posición libre o -1 si no hay posiciones libres
      */
@@ -69,6 +68,27 @@ public class Metodos {
             }
         }
         return encontrado;
+    }
+
+    /**
+     * Método que busca en el array de alumnos el alumno que le pasamos por parámetro y devuelve su posición
+     * @param arrayAlumnos Array de alumnos
+     * @param nombre Nombre del alumno que le pedimos al usuario
+     * @return posición del alumno en el array
+     */
+    public static int posicionAlumno(Alumno[] arrayAlumnos, String nombre) {
+        //Declaramos las variables
+        int posicion = 0;   //Variable que guarda la posición del alumno
+
+        //Recorremos el array de alumnos
+        for (Alumno arrayAlumno : arrayAlumnos) {
+            //Si el alumno no es nulo y el nombre coincide, indicamos que lo hemos encontrado
+            if (arrayAlumno != null && arrayAlumno.getNombre().equalsIgnoreCase(nombre)) {
+                break;
+            }
+            posicion++;
+        }
+        return posicion;
     }
 
     /**
@@ -130,20 +150,19 @@ public class Metodos {
         System.out.println("Introduce el nombre del alumno que quieres modificar");
         nombre = sc.next();
 
-        //Recorremos el array de alumnos
-        for (Alumno alumno : arrayAlumnos) {
-            //Si el alumno no es nulo y el nombre del alumno es igual al nombre que ha introducido el usuario
-            if (alumno != null && alumno.getNombre().equalsIgnoreCase(nombre)) {
-                encontrado = true;
-                //Pedimos la nueva nota media
-                System.out.println("Introduce la nueva nota media del alumno");
-                notaMedia = sc.nextDouble();
-                //Modificamos la nota media del alumno
-                alumno.setNotaMedia(notaMedia);
-                break;
-            }
+        //Si el alumno existe, modificamos la nota media
+        if (busquedaAlumno(arrayAlumnos, nombre)) {
+            //Indicamos que el alumno ha sido encontrado
+            encontrado = true;
+            //Pedimos la nueva nota media del alumno
+            System.out.println("Introduce la nueva nota media del alumno: ");
+            notaMedia = sc.nextDouble();
+            sc.nextLine();
+            //Modificamos la nota media del alumno
+            arrayAlumnos[posicionAlumno(arrayAlumnos,nombre)].setNotaMedia(notaMedia);
         }
 
+        //Devolvemos si el alumno ha sido encontrado o no
         return encontrado;
     }
 
@@ -151,26 +170,27 @@ public class Metodos {
      * Método que borra el alumno que elija el usuario, es decir lo pone a null
      *
      * @param arrayAlumnos Array de alumnos
-     * @return
+     * @return Devuelve true si el alumno ha sido borrado y false si no ha sido encontrado
      */
-    public static void borrarAlumno(Alumno[] arrayAlumnos) {
+    public static boolean borrarAlumno(Alumno[] arrayAlumnos) {
 
         //Declaramos las variables
-        String nombre;      //Variable donde guardaremos el nombre del alumno
+        String nombre;              //Variable donde guardaremos el nombre del alumno
+        boolean encontrado = false; //Variable que nos indica si el nombre del alumno ha sido encontrado
 
         //Le pedimos al usuario el nombre del alumno que quiere borrar
         System.out.println("Introduce el nombre del alumno que quieres borrar");
         nombre = sc.next();
 
-        //Recorremos el array de alumnos
-        for (int i = 0; i < arrayAlumnos.length; i++) {
-            //Si el alumno no es nulo y el nombre del alumno es igual al nombre que ha introducido el usuario
-            if (arrayAlumnos[i] != null && arrayAlumnos[i].getNombre().equalsIgnoreCase(nombre)) {
-                //Borramos el alumno
-                arrayAlumnos[i] = null;
-                break;
-            }
+        //Si el alumno existe, lo borramos
+        if (busquedaAlumno(arrayAlumnos, nombre)) {
+            //Indicamos que el alumno ha sido encontrado
+            encontrado = true;
+            //Borramos el alumno
+            arrayAlumnos[posicionAlumno(arrayAlumnos,nombre)] = null;
         }
 
+        //Devolvemos si el alumno ha sido encontrado o no
+        return encontrado;
     }
 }

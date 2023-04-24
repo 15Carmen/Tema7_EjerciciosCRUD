@@ -16,44 +16,40 @@ public class Main {
      * @param args
      */
     public static void main(String[] args) {
-        int opcion;
-        int contador = 0;
-        int posicion;
-        Pizza[] pedidos = new Pizza[0];
+        //Declaramos las variables
+        int opc;            //Variable que guarda la opción introducida por el usuario
+        int contador = 0;   //Variable que usaremos para saber cuantas pizzas están pedidas
+        Pizza[] arrayPedidos = new Pizza[0]; //Array de pedidos
 
         do {
+            //Mostramos el menu por consola y guardamos la opción que el usuario elija
             Metodos.pintarMenu();
-            opcion = sc.nextInt();
-            switch (opcion) {
-                case 1 -> {
-                    if (contador > 0) {
-                        Metodos.listaPedidos(pedidos);
-                    } else {
+            opc = sc.nextInt();
+            switch (opc) {
+                case 1 -> { //Mostramos los pedidos
+                    if (contador > 0) { //Si hay pedidos
+                        Metodos.listaPedidos(arrayPedidos); //Mostramos la lista de ellos
+                    } else {    //Si no hay pedidos se lo indiucamos al usuario
                         System.err.println("No hay pedidos en la lista.");
                     }
                 }
-                case 2 -> {
-                    posicion = Metodos.posicionLibre(pedidos);
-                    pedidos = Metodos.nuevoPedido(pedidos, posicion);
-                    if (posicion < 0) {
-                        contador++;
+                case 2 -> { //Añadimos un nuevo pedido
+                    //Añadimos un nuevo pedido al array de pedidos en la primera posición libre
+                    arrayPedidos = Metodos.nuevoPedido(arrayPedidos, Metodos.posicionLibre(arrayPedidos));
+                    if (Metodos.posicionLibre(arrayPedidos) < 0) { //Si la posición libre es mayor que 0
+                        contador++; //Aumentamos el contador de pedidos
                     }
                 }
-                case 3 -> {
-                    if (Metodos.cambioEstado(pedidos) < 0) {
-                        System.err.println("El código introducido no existe o la pizza ya ha sido servida.");
+                case 3 -> { //Cambiamos el estado de un pedido
+                    //Si el método cambioEstado devuelve un valor menor que 0 es que el código introducido no existe o la pizza ya ha sido servida
+                    if (Metodos.cambioEstado(arrayPedidos) < 0) {
+                        System.err.println("El pedido introducido no existe o ya ha sido servido");
                     }
                 }
-                case 4 -> {
-                    if (Metodos.cuentaPizzas(pedidos) != 0) {
-                        System.err.println("No se puede cerrar la jornada laboral, aún hay " + Metodos.cuentaPizzas(pedidos)
-                                + " pizza(s) sin entregar.");
-                    }
-                }
-                case 5 -> System.out.println("Hasta luego.");
-                default -> System.out.println("Esa opción no está contemplada.");
+                case 4 ->  System.out.println("Hasta luego.");
+                default -> System.out.println("Opción no válida");
             }
 
-        } while (opcion != 5);
+        } while (opc != 4);
     }
 }

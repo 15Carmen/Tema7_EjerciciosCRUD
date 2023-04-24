@@ -17,52 +17,12 @@ public class Metodos {
                 [1] Mostrar todos los pedidos
                 [2] Añadir un pedido
                 [3] Cambiar el estado de un pedido
-                [4] Cerrar la jornada laboral
-                [5] Salir""");
+                [4] Salir""");
     }
 
     /**
-     * Método que muestra los pedidos
-     * @param pedidos lista de pedidos
-     */
-    public static void listaPedidos(Pizza[] pedidos) {
-
-        for (Pizza pizza : pedidos) {
-            if (pizza != null) {
-                System.out.println(pizza);
-            }
-        }
-    }
-
-    /**
-     * Método que añade un pedido
-     * @param pedidos lista de pedidos
-     * @param posicion posición del pedido
-     * @return devuelve la lista de pedidos
-     */
-    public static Pizza[] nuevoPedido(Pizza[] pedidos, int posicion) {
-
-        if (posicion >= 0) {
-            sc.nextLine();
-
-            pedidos[posicion] = new Pizza(posicion, eligeTamanyo(), eligeTipo(), "Servida");
-        } else {
-            pedidos = Arrays.copyOf(pedidos, pedidos.length + 1);
-            sc.nextLine();
-
-            if (posicion == -1) {
-                posicion = pedidos.length - 1;
-            }
-
-            pedidos[pedidos.length - 1] = new Pizza(posicion, eligeTamanyo(), eligeTipo(), "Pedida");
-        }
-
-        return pedidos;
-    }
-
-    /**
-     * Método que comprueba si una posion del array de pedidos está libre
-     * @param pedidos lista de pedidos
+     * Método que comprueba si una posición del array de pedidos está libre
+     * @param pedidos array de pedidos
      * @return devuelve la posición libre o -1 si no hay posiciones libres
      */
     public static int posicionLibre(Pizza[] pedidos) {
@@ -79,81 +39,131 @@ public class Metodos {
     }
 
     /**
-     * Método donde le pedimos al usuario que elija el tamaño de la pizza
+     * Método que muestra la lista de pedidos por consola
+     * @param pedidos array de pedidos
+     */
+    public static void listaPedidos(Pizza[] pedidos) {
+
+        for (Pizza pizza : pedidos) {
+            if (pizza != null) {
+                System.out.println(pizza);
+            }
+        }
+    }
+
+    /**
+     * Método que crea un nuevo pedido
+     * @param pedidos array de pedidos
+     * @param posicion posición del pedido en el array
+     * @return devuelve el array de pedidos
+     */
+    public static Pizza[] nuevoPedido(Pizza[] pedidos, int posicion) {
+
+        //Si hay una posición libre
+        if (posicion >= 0) {
+            //Creamos un nuevo pedido
+            pedidos[posicion] = new Pizza(posicion, tamanyoPizza(), tipoPizza(), "Servida");
+        } else {    //Si no hay posiciones libres
+            //Creamos un nuevo array con una posición más
+            pedidos = Arrays.copyOf(pedidos, pedidos.length + 1);
+
+            //Si la posición es -1, la posición será la última del array
+            if (posicion == -1) {
+                posicion = pedidos.length - 1;
+            }
+
+            //Creamos el nuevo pedido en la última posición del array
+            pedidos[pedidos.length - 1] = new Pizza(posicion, tamanyoPizza(), tipoPizza(), "Pedida");
+        }
+
+        //Devolvemos el array de pedidos
+        return pedidos;
+    }
+
+
+
+    /**
+     * Método donde le pedimos al usuario que elija el tamaño de la pizza a través de un menú
      * @return devuelve el tamaño de la pizza
      */
-    public static String eligeTamanyo() {
-        int opcion;
-        String tamanio = "";
+    public static String tamanyoPizza() {
 
-        do {
+        //Declaramos las variables
+        int opcion;             //Variable para guardar la opción del usuario
+        String tamanyo = "";    //Variable para guardar el tamaño de la pizza
+
+        do {    //Le pedimos el tamaño de la pizza al usuario mientras no elija una opción válida
+
+            //Mostramos el menú por pantalla
             System.out.println("""
             Introduzca el tamaño de su pizza:
             [1] Mediana
             [2] Familiar
             """);
+            //Guardamos la opción elegida por el usuario
             opcion = sc.nextInt();
 
             switch (opcion) {
-                case 1:
-                    tamanio = String.valueOf(Pizza.Tamanio.Mediana);
-                    break;
-                case 2:
-                    tamanio = String.valueOf(Pizza.Tamanio.Familiar);
-                    break;
-                default:
-                    tamanio = "Esa opción no está contemplada";
+                case 1-> { //Si la opción es 1, el tamaño será mediana
+                    tamanyo = String.valueOf(Pizza.Tamanio.Mediana);
+                }
+                case 2-> {  //Si la opción es 2, el tamaño será familiar
+                    tamanyo = String.valueOf(Pizza.Tamanio.Familiar);
+                }
+                default->   tamanyo = "Opción no válida";
             }
         } while (opcion != 1 && opcion != 2);
 
-        return tamanio;
+        return tamanyo;
     }
 
     /**
      * Método donde le pedimos al usuario que elija el tipo de pizza
      * @return devuelve el tipo de pizza
      */
-    public static String eligeTipo() {
-        int opcion;
-        String tipo;
+    public static String tipoPizza() {
+        //Declaramos las variables
+        int opcion;     //Variable para guardar la opción del usuario
+        String tipo;    //Variable para guardar el tipo de pizza
 
-        do {
+        do {    //Le pedimos el tipo de pizza al usuario mientras no elija una opción válida
+
+            //Mostramos el menú por pantalla
             System.out.println("""
             Introduzca el tamaño de su pizza:
             [1] Cuatro quesos
             [2] Funghi
             [3] Margarita
             """);
+            //Guardamos la opción elegida por el usuario
             opcion = sc.nextInt();
 
             switch (opcion) {
-                case 1:
+                case 1-> { //Si la opción es 1, el tipo será Cuatro quesos
                     tipo = String.valueOf(Pizza.Tipo.CuatroQuesos);
-                    break;
-                case 2:
+                }
+                case 2-> {  //Si la opción es 2, el tipo será Funghi
                     tipo = String.valueOf(Pizza.Tipo.Funghi);
-                    break;
-                case 3:
+                }
+                case 3-> {  //Si la opción es 3, el tipo será Margarita
                     tipo = String.valueOf(Pizza.Tipo.Margarita);
-                    break;
-                default:
-                    tipo = "No tenemos este tipo de pizza";
+                }
+                default->   tipo = "Opción no válida";
             }
-        } while (opcion <= 0 || opcion > 3);
+        } while (opcion < 1 || opcion > 3);
 
+        //Devolvemos el tipo de pizza
         return tipo;
     }
 
     /**
-     * Método que cambia el estado de un pedido
-     * @param pedidos lista de pedidos
-     * @return  devuelve la posición del pedido
+     * Método que cambia el estado de un pedido de "Pedida" a "Servida"
+     * @param pedidos array de pedidos
      */
-    public static int cambioEstado(Pizza[] pedidos) {
+    public static void cambioEstado(Pizza[] pedidos) {
         //Declaramos las variables
-
-        int codigo;
-        int indice = 0;
+        int codigo;     //Variable para guardar el código de la pizza
+        int indice = 0; //Variable para guardar el índice de la pizza
 
         //Pedimos el código de la pizza
         System.out.println("Introduzca el código de la pizza: ");
@@ -166,27 +176,6 @@ public class Metodos {
         } else {    //Si no, cambia el estado de la pizza a "Servida"
             pedidos[codigo].setEstado("Servida");
         }
-
-        return indice;
     }
 
-    /**
-     * Métod que cuenta las pizzas pedidas
-     * @param pedidos lista de pedidos
-     * @return el total de pizzas pedidas
-     */
-    public static int cuentaPizzas(Pizza[] pedidos) {
-        int pedida = 0;
-
-        for (Pizza pizza : pedidos) {
-            if (pizza.getEstado().equals("Pedida")) {
-                pedida++;
-            }
-        }
-
-        if (pedida == 0) {
-            pedidos = new Pizza[0];
-        }
-        return pedida;
-    }
 }

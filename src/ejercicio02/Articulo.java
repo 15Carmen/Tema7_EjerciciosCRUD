@@ -96,7 +96,7 @@ public class Articulo {
 
         //Creamos una variable para almacenar el texto
         String texto;
-        texto = "Código: " + codigo + " Descripción: " + descripcion + " Precio de compra: " + precioCompra + " Precio de venta: " + precioVenta + " Stock: " + stock;
+        texto = "Código: " + codigo + "; Descripción: " + descripcion + "; Precio de compra: " + precioCompra + "; Precio de venta: " + precioVenta + "; Stock: " + stock;
 
         return texto;
     }

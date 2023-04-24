@@ -23,6 +23,8 @@ public class Alumno {
      * Constructor por defecto
      */
     public Alumno() {
+        this.nombre = "";
+        this.notaMedia = 0;
     }
 
     /**
@@ -32,12 +34,18 @@ public class Alumno {
      */
     public Alumno(String nombre, double notaMedia) {
         this.nombre = nombre;
-        this.notaMedia = notaMedia;
+
+        if (notaMedia < 0) {
+            this.notaMedia = 0;
+        }else if (notaMedia > 10) {
+            this.notaMedia = 10;
+        }else {
+            this.notaMedia = notaMedia;
+        }
     }
 
     //Creamos los métodos get y set
 
-    //TODO: Hacer comprobaciones en los setter
     public String getNombre() {
         return nombre;
     }
@@ -49,7 +57,13 @@ public class Alumno {
         return notaMedia;
     }
     public void setNotaMedia(double notaMedia) {
-        this.notaMedia = notaMedia;
+        if (notaMedia < 0) {
+            this.notaMedia = 0;
+        }else if (notaMedia > 10) {
+            this.notaMedia = 10;
+        }else {
+            this.notaMedia = notaMedia;
+        }
     }
 
     //Creamos el método toString

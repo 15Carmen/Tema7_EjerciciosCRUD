@@ -98,7 +98,7 @@ public class Pizza {
      */
     @Override
     public String toString() {
-        return "Código de la pizza = " + codigo + ", tamaño = " + tamanio + ", tipo = " + tipo + ", estado = " + estado + "";
+        return "Código: " + codigo + "; Tamaño: " + tamanio + "; Tipo = " + tipo + "; Estado = " + estado + "";
 
     }
 }

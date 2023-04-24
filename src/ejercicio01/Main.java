@@ -44,7 +44,11 @@ public class Main {
                     }
                 }
                 case 4 -> {
-                    Metodos.borrarAlumno(arrayAlumnos);
+                    if (Metodos.borrarAlumno(arrayAlumnos)) {
+                        System.out.println("Alumno borrado con éxito");
+                    } else {
+                        System.out.println("Alumno no encontrado");
+                    }
                 }
                 case 5 -> {
                     System.out.println("Adios!!");
